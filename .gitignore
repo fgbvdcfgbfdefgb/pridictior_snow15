@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Local/raw downloaded archives and generated checkpoints
+/data/raw/
+/models/*.pt
+/models/candidates/
+/models/online/
+/reports/
+*.log
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/

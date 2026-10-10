@@ -1,0 +1,2 @@
+# Convenience install from the repository root; choose a PyTorch wheel appropriate for your CUDA runtime.
+-e .[train,live,dev]

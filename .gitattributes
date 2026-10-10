@@ -1,0 +1,4 @@
+# Daily compressed market-data chunks are stored with Git LFS.
+data/processed/**/*.parquet filter=lfs diff=lfs merge=lfs -text
+# Optional retained upstream archives should also go through LFS.
+data/raw/**/*.zip filter=lfs diff=lfs merge=lfs -text
