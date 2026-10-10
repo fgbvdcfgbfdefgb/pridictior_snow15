@@ -1,0 +1,235 @@
+{
+  "source": "Binance Vision Spot 1s klines",
+  "symbol": "BTCUSDT",
+  "bar_interval": "1 second UTC",
+  "bar_semantics": "native 1s OHLCV; missing seconds forward-filled at previous close with zero volume",
+  "requested_start": "2020-01-01",
+  "requested_end_inclusive": "2020-01-31",
+  "complete": true,
+  "missing_dates": [],
+  "outputs": [
+    {
+      "file": "2020-01/01.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-01 00:00:00+00:00",
+      "last_timestamp": "2020-01-01 23:59:59+00:00",
+      "bytes": 2581263
+    },
+    {
+      "file": "2020-01/02.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-02 00:00:00+00:00",
+      "last_timestamp": "2020-01-02 23:59:59+00:00",
+      "bytes": 2841174
+    },
+    {
+      "file": "2020-01/03.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-03 00:00:00+00:00",
+      "last_timestamp": "2020-01-03 23:59:59+00:00",
+      "bytes": 3371127
+    },
+    {
+      "file": "2020-01/04.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-04 00:00:00+00:00",
+      "last_timestamp": "2020-01-04 23:59:59+00:00",
+      "bytes": 2933126
+    },
+    {
+      "file": "2020-01/05.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-05 00:00:00+00:00",
+      "last_timestamp": "2020-01-05 23:59:59+00:00",
+      "bytes": 3015912
+    },
+    {
+      "file": "2020-01/06.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-06 00:00:00+00:00",
+      "last_timestamp": "2020-01-06 23:59:59+00:00",
+      "bytes": 3224928
+    },
+    {
+      "file": "2020-01/07.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-07 00:00:00+00:00",
+      "last_timestamp": "2020-01-07 23:59:59+00:00",
+      "bytes": 3585647
+    },
+    {
+      "file": "2020-01/08.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-08 00:00:00+00:00",
+      "last_timestamp": "2020-01-08 23:59:59+00:00",
+      "bytes": 3699093
+    },
+    {
+      "file": "2020-01/09.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-09 00:00:00+00:00",
+      "last_timestamp": "2020-01-09 23:59:59+00:00",
+      "bytes": 3417339
+    },
+    {
+      "file": "2020-01/10.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-10 00:00:00+00:00",
+      "last_timestamp": "2020-01-10 23:59:59+00:00",
+      "bytes": 3613524
+    },
+    {
+      "file": "2020-01/11.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-11 00:00:00+00:00",
+      "last_timestamp": "2020-01-11 23:59:59+00:00",
+      "bytes": 3428443
+    },
+    {
+      "file": "2020-01/12.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-12 00:00:00+00:00",
+      "last_timestamp": "2020-01-12 23:59:59+00:00",
+      "bytes": 3174619
+    },
+    {
+      "file": "2020-01/13.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-13 00:00:00+00:00",
+      "last_timestamp": "2020-01-13 23:59:59+00:00",
+      "bytes": 3032767
+    },
+    {
+      "file": "2020-01/14.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-14 00:00:00+00:00",
+      "last_timestamp": "2020-01-14 23:59:59+00:00",
+      "bytes": 3822267
+    },
+    {
+      "file": "2020-01/15.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-15 00:00:00+00:00",
+      "last_timestamp": "2020-01-15 23:59:59+00:00",
+      "bytes": 3670277
+    },
+    {
+      "file": "2020-01/16.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-16 00:00:00+00:00",
+      "last_timestamp": "2020-01-16 23:59:59+00:00",
+      "bytes": 3423106
+    },
+    {
+      "file": "2020-01/17.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-17 00:00:00+00:00",
+      "last_timestamp": "2020-01-17 23:59:59+00:00",
+      "bytes": 3636786
+    },
+    {
+      "file": "2020-01/18.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-18 00:00:00+00:00",
+      "last_timestamp": "2020-01-18 23:59:59+00:00",
+      "bytes": 3318175
+    },
+    {
+      "file": "2020-01/19.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-19 00:00:00+00:00",
+      "last_timestamp": "2020-01-19 23:59:59+00:00",
+      "bytes": 3530851
+    },
+    {
+      "file": "2020-01/20.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-20 00:00:00+00:00",
+      "last_timestamp": "2020-01-20 23:59:59+00:00",
+      "bytes": 3204850
+    },
+    {
+      "file": "2020-01/21.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-21 00:00:00+00:00",
+      "last_timestamp": "2020-01-21 23:59:59+00:00",
+      "bytes": 3105119
+    },
+    {
+      "file": "2020-01/22.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-22 00:00:00+00:00",
+      "last_timestamp": "2020-01-22 23:59:59+00:00",
+      "bytes": 2932628
+    },
+    {
+      "file": "2020-01/23.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-23 00:00:00+00:00",
+      "last_timestamp": "2020-01-23 23:59:59+00:00",
+      "bytes": 3393993
+    },
+    {
+      "file": "2020-01/24.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-24 00:00:00+00:00",
+      "last_timestamp": "2020-01-24 23:59:59+00:00",
+      "bytes": 3304213
+    },
+    {
+      "file": "2020-01/25.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-25 00:00:00+00:00",
+      "last_timestamp": "2020-01-25 23:59:59+00:00",
+      "bytes": 2943753
+    },
+    {
+      "file": "2020-01/26.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-26 00:00:00+00:00",
+      "last_timestamp": "2020-01-26 23:59:59+00:00",
+      "bytes": 3092923
+    },
+    {
+      "file": "2020-01/27.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-27 00:00:00+00:00",
+      "last_timestamp": "2020-01-27 23:59:59+00:00",
+      "bytes": 3424154
+    },
+    {
+      "file": "2020-01/28.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-28 00:00:00+00:00",
+      "last_timestamp": "2020-01-28 23:59:59+00:00",
+      "bytes": 3521301
+    },
+    {
+      "file": "2020-01/29.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-29 00:00:00+00:00",
+      "last_timestamp": "2020-01-29 23:59:59+00:00",
+      "bytes": 3369620
+    },
+    {
+      "file": "2020-01/30.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-30 00:00:00+00:00",
+      "last_timestamp": "2020-01-30 23:59:59+00:00",
+      "bytes": 3475908
+    },
+    {
+      "file": "2020-01/31.parquet",
+      "rows": 86400,
+      "first_timestamp": "2020-01-31 00:00:00+00:00",
+      "last_timestamp": "2020-01-31 23:59:59+00:00",
+      "bytes": 3424820
+    }
+  ],
+  "skipped_existing_files": [],
+  "sources": [
+    "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1s/BTCUSDT-1s-2020-01.zip"
+  ],
+  "generated_utc": "2026-10-10T08:39:11.871381+00:00",
+  "actual_output_days": 31
+}
