@@ -2,7 +2,7 @@
 
 A research scaffold for **second-by-second historical replay**, delayed-label online learning, multi-GPU candidate training, and a Marimo live dashboard. The default public data source is Binance Spot BTC/USDT because the requested provider name was unspecified. It uses Binance Vision native 1-second kline archives for history and Binance's public Spot WebSocket/REST endpoints for live data.
 
-> **Status of this delivery:** source code, setup scripts, tests, a Snowflake/offline runner, and a separate Marimo app are included. The multi-year dataset and trained weights are **not** bundled: the history is several GB and must be downloaded in monthly ranges, then stored as daily Parquet chunks. No training was run in this workspace because it has no PyTorch/CUDA. This is a research scaffold, not a verified profitable model.
+> **Status of this delivery:** source code, setup scripts, tests, a Snowflake/offline runner, and a separate Marimo app are included. The BTCUSDT 1-second dataset from **2020-01-01 through 2026-10-09** is committed in Git LFS as **2,474 daily Parquet files** (213,753,600 one-second rows; about 7.2 GB). The manifest reports complete coverage with no missing dates. Trained weights are not bundled, and no training was run in this workspace because it has no PyTorch/CUDA. This is a research scaffold, not a verified profitable model.
 
 ## What it does
 
@@ -14,7 +14,7 @@ A research scaffold for **second-by-second historical replay**, delayed-label on
 
 ## Important constraints
 
-1. **The dataset is not in Git yet.** From 2020-01-01 through 2026-10-09 there are roughly 214 million one-second slots. Even compressed, the full series is multi-GB. This repository uses daily Parquet chunks and Git LFS tracking, and includes a month-at-a-time commit helper; chunking avoids per-file limits but does not remove LFS storage/bandwidth quotas. Consider object storage/DVC if Git LFS limits are insufficient. Do not put a multi-GB dataset in ordinary Git history.
+1. **The dataset is in Git LFS, not ordinary Git history.** It covers 2020-01-01 through 2026-10-09 (2,474 daily files, 213,753,600 one-second slots; about 7.2 GB). Install Git LFS and run `git lfs pull` to fetch the Parquet objects; verify `data/processed/BTCUSDT_1s/manifest.json` before training. Extending the range still consumes Git LFS storage/bandwidth quotas; use object storage/DVC if your account limits are insufficient. Do not add these multi-GB files to ordinary Git history.
 2. A 1-second OHLCV bar is an aggregation of trades, **not** a full order book or a guarantee that a trade occurred in every second. Binance archive availability and publication delays can make the latest UTC day incomplete. Verify `data/processed/BTCUSDT_1s/manifest.json` before training.
 3. No predictor can guarantee stable forecasts or profitable trading. The inference path uses robust loss, a median/EMA stabilizer, and a volatility-aware return cap, but sudden gaps/news can still cause large errors. Paper-trade and backtest with fees/slippage before making any trading decisions. The project does not place orders.
 4. The full replay is compute-intensive. The replay can run at maximum speed (`--speed 0`) while preserving market-time order, or at a wall-clock multiplier. Training examples can be sampled with `--sample-stride`; predictions/evaluation in the replay runner remain one per available second.
@@ -41,31 +41,26 @@ The size profile is chosen by the **training process** from visible CPU/RAM/GPU 
 
 ## Historical data (monthly 1s-kline source; daily output chunks)
 
-Install Git LFS **before** adding Parquet chunks:
+The committed dataset uses Git LFS. After cloning, fetch the data objects with:
 
 ```bash
 git lfs install
+git lfs pull
 ```
 
-Download a small test month first:
-
-```bash
-python scripts/download_binance.py --start 2020-01-01 --end 2020-01-31
-```
-
-The default output layout is:
+The current coverage is **2020-01-01 through 2026-10-09 inclusive**, in 2,474 daily Parquet files under:
 
 ```text
 data/processed/BTCUSDT_1s/YYYY-MM/DD.parquet
 ```
 
-The full range is deliberately not downloaded automatically. Download and review one month at a time (the script skips already existing day files unless `--overwrite` is supplied). Use a completed UTC date as the end; for example, the plan date's latest completed day is `2026-10-09`:
+The manifest is `data/processed/BTCUSDT_1s/manifest.json`; its current status is complete with no missing dates. To extend or rebuild the dataset, run the downloader for one month at a time (it skips existing day files unless `--overwrite` is supplied). For example:
 
 ```bash
-python scripts/download_binance.py --start 2020-01-01 --end 2026-10-09
+python scripts/download_binance.py --start 2026-10-01 --end 2026-10-09
 ```
 
-The downloader rejects today's/future dates so it cannot silently forward-fill unfinished current-day bars. The live feed supplies current-day data. It falls back from a missing monthly Binance Vision archive to daily archives and fails on missing historical source files unless `--skip-missing` is explicitly set. It writes a manifest with source URLs and coverage; inspect it before model training.
+The downloader rejects today's/future dates so it cannot silently forward-fill unfinished current-day bars. The live feed supplies current-day data. It falls back from a missing monthly Binance Vision archive to daily archives and fails on missing historical source files unless `--skip-missing` is explicitly set. Every successful run writes a manifest with source URLs and coverage; inspect it before model training.
 
 To commit already-downloaded chunks in monthly Git commits (requires a configured `origin` and Git LFS):
 
