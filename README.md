@@ -1,12 +1,12 @@
 # Bitcoin Price Predictor (BTC/USDT spot)
 
-A research scaffold for **second-by-second historical replay**, delayed-label online learning, multi-GPU candidate training, and a Marimo live dashboard. The default public data source is Binance Spot BTC/USDT because the requested provider name was unspecified. It uses Binance Vision `aggTrades` archives for history and Binance's public Spot WebSocket/REST endpoints for live data.
+A research scaffold for **second-by-second historical replay**, delayed-label online learning, multi-GPU candidate training, and a Marimo live dashboard. The default public data source is Binance Spot BTC/USDT because the requested provider name was unspecified. It uses Binance Vision native 1-second kline archives for history and Binance's public Spot WebSocket/REST endpoints for live data.
 
 > **Status of this delivery:** source code, setup scripts, tests, a Snowflake/offline runner, and a separate Marimo app are included. The multi-year dataset and trained weights are **not** bundled: the history is several GB and must be downloaded in monthly ranges, then stored as daily Parquet chunks. No training was run in this workspace because it has no PyTorch/CUDA. This is a research scaffold, not a verified profitable model.
 
 ## What it does
 
-- Downloads Binance aggregated trades and converts them into dense UTC **1-second OHLCV + quote volume, trade count, and taker-buy volume** Parquet files. Empty seconds are forward-filled at the last traded price with zero volume. Daily output files are grouped by month.
+- Downloads Binance's native 1-second klines and writes dense UTC **1-second OHLCV + quote volume, trade count, and taker-buy volume** Parquet files. If a second is absent, it is forward-filled at the previous close with zero volume. Daily output files are grouped by month.
 - Replays bars in timestamp order. Every forecast targets the log return to the price **1,500 seconds (25 minutes) later**; it is scored only after that future bar arrives. The online path therefore uses delayed labels rather than pretending the reward is known immediately.
 - Keeps one CPU-side, deterministic Market Analyser (multi-window feature summaries). Candidate price predictors (`mlp`, `tcn`, `gru`) share the same analyser. The selected model width and analyser window set are chosen **after** hardware discovery.
 - Trains one chronological pass (no shuffled epochs), uses a time-ordered holdout, saves every candidate, reports MAE/RMSE/directional accuracy/forecast instability, and selects the lowest composite validation score. `torchrun` + DistributedDataParallel is used when launched with multiple processes/GPUs.
@@ -39,7 +39,7 @@ python scripts/detect_hardware.py
 
 The size profile is chosen by the **training process** from visible CPU/RAM/GPU resources; this workspace cannot see MoLab's RTX PRO 6000.
 
-## Historical data (monthly source; daily output chunks)
+## Historical data (monthly 1s-kline source; daily output chunks)
 
 Install Git LFS **before** adding Parquet chunks:
 

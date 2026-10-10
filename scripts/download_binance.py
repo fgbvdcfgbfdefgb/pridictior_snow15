@@ -7,7 +7,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from bitcoin_predictor.binance_history import main
+from bitcoin_predictor.binance_klines import main
 
 if __name__ == "__main__":
     raise SystemExit(main())
